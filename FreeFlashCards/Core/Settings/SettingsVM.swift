@@ -47,6 +47,7 @@ final class SettingsVM: ObservableObject {
     
     func deleteAccount() async throws {
         try await AuthenticationManager.shared.deleteAccount()
+        // + also must delete account from firestore (using the userID)
     }
     
     func resetPassword() async throws {

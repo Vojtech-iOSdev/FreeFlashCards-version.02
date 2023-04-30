@@ -8,19 +8,67 @@
 import SwiftUI
 
 struct HomeScreen: View {
+        
+    @StateObject private var vm: HomeVM
+    
+    init(vm: HomeVM) {
+        _vm = StateObject(wrappedValue: vm)
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            Color.pink.ignoresSafeArea()
+            
+            VStack {
+                Button {
+                    // start lesson 1
+                } label: {
+                    NavigationLink {
+                        // show LessonView
+                        Text("Lekce 1")
+                    } label: {
+                        Text("Lekce 1")
+                    }
+                    .buttonStyle(.customButtonStyle01)
+                }
+                
+                Button {
+                    // start "Lekce 2"
+                } label: {
+                    NavigationLink {
+                        // show LessonView
+                        Text("Lekce 2")
+                    } label: {
+                        Text("Lekce 2")
+                    }
+                    .buttonStyle(.customButtonStyle01)
+                }
+            }
+            .padding()
+            .fullScreenCover(isPresented: $vm.showCourses) {
+                CoursesView(vm: HomeVM(userManager: UserManager()))
+            }
         }
-        .padding()
+        .overlay(alignment: .top) {
+            Button {
+                vm.showCourses = true
+            } label: {
+                Text("courses")
+                
+            }
+            .font(.title)
+            .buttonStyle(.borderedProminent)
+            .tint(.white)
+            .foregroundColor(.red)
+            .padding()
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen()
+        NavigationStack {
+            HomeScreen(vm: HomeVM(userManager: UserManager()))
+        }
     }
 }

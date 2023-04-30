@@ -10,59 +10,61 @@ import SwiftUI
 struct OnboardingView: View {
     
     @StateObject private var sharedVM: SharedVM = .init()
-    @StateObject private var vm: OnboardingVM = .init()
+    @StateObject private var vm: OnboardingVM
+    
+    init(vm: OnboardingVM) {
+        _vm = StateObject(wrappedValue: vm)
+    }
     
     var body: some View {
-        NavigationStack {
-            ZStack {
-                Color.pink.ignoresSafeArea()
+        ZStack {
+            Color.pink.ignoresSafeArea()
+            
+            VStack(spacing: 40) {
                 
-                VStack(spacing: 40) {
-                    
-                    NavigationLink {
-                        SignInView()
-                    } label: {
-                        Text("Sign In")
-                    }
-                    .buttonStyle(.customButtonStyle01)
-                    
-                    Rectangle()
-                        .frame(width: 320, height: 2)
-                        .foregroundColor(Color.white)
-                    
-                    NavigationLink {
-                        CreateAccountView()
-                    } label: {
-                        Text("Create an Account")
-                    }
-                    .buttonStyle(.customButtonStyle01)
-                    
-                    Rectangle()
-                        .frame(width: 320, height: 2)
-                        .foregroundColor(Color.white)
-                    
-                    Button {
-                        Task {
-                            do {
-                                try await vm.signInAnonymously()
-                                sharedVM.onboardingProcessCompleted = true
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
-                    } label: {
-                        Text("Dont wanna create an account?")
-                    }
-                    .buttonStyle(.customButtonStyle01)
+                NavigationLink {
+                    SignInView(vm: OnboardingVM(userManager: UserManager()))
+                } label: {
+                    Text("Sign In")
                 }
-                .padding()
+                .buttonStyle(.customButtonStyle01)
+                
+                Rectangle()
+                    .frame(width: 320, height: 2)
+                    .foregroundColor(Color.white)
+                
+                NavigationLink {
+                    CreateAccountView()
+                } label: {
+                    Text("Create an Account")
+                }
+                .buttonStyle(.customButtonStyle01)
+                
+                Rectangle()
+                    .frame(width: 320, height: 2)
+                    .foregroundColor(Color.white)
+                
+                Button {
+                    Task {
+                        do {
+                            try await vm.signInAnonymously()
+                            sharedVM.onboardingProcessCompleted = true
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                } label: {
+                    Text("Dont wanna create an account?")
+                }
+                .buttonStyle(.customButtonStyle01)
             }
+            .padding()
         }
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(vm: OnboardingVM(userManager: UserManager()))
     }
 }

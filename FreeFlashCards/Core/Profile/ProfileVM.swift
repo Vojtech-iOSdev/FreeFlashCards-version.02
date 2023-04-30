@@ -7,14 +7,48 @@
 
 import Foundation
 
+@MainActor
 final class ProfileVM: ObservableObject {
+    
+    let userManager: UserManager
     
     @Published private(set) var userInfo: DBUser? = nil
     
-    @MainActor
-    func loadCurrentUserInfo() async throws {
-        let authModel = try AuthenticationManager.shared.getAuthenticatedUser()
-        self.userInfo = try await UserManager.shared.getUser(userID: authModel.uid)
+    init(userManager: UserManager) {
+        self.userManager = userManager
     }
     
+    func loadCurrentUserInfo() async throws {
+        let authModel = try AuthenticationManager.shared.getAuthenticatedUser()
+        self.userInfo = try await userManager.getUser(userID: authModel.uid)
+    }
+    
+    func togglePremiumStatus() {
+        guard let userInfo else { return }
+        let currentPremiumStatus = userInfo.isPremium ?? false
+        
+        Task {
+            try await userManager.updateUserPremiumStatus(userID: userInfo.userId,isPremium: !currentPremiumStatus)
+            self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+        }  
+    }
+    
+    func addUserPreference(text: String) {
+        guard let userInfo else { return }
+        
+        Task {
+            try await userManager.addUserPreference(userID: userInfo.userId, preference: text)
+            self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+        }
+    }
+    
+    func removeUserPreference(text: String) {
+        guard let userInfo else { return }
+        
+        Task {
+            try await userManager.removeUserPreference(userID: userInfo.userId, preference: text)
+            self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+        }
+    }
+        
 }

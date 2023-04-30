@@ -12,7 +12,11 @@ import GoogleSignInSwift
 struct SignInView: View {
     
     @StateObject private var sharedVM: SharedVM = .init()
-    @StateObject private var vm: OnboardingVM = .init()
+    @StateObject private var vm: OnboardingVM
+    
+    init(vm: OnboardingVM) {
+        _vm = StateObject(wrappedValue: vm)
+    }
     
     var body: some View {
         ZStack {
@@ -32,7 +36,7 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(vm: OnboardingVM(userManager: UserManager()))
     }
 }
 
