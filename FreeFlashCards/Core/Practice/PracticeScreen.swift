@@ -11,8 +11,8 @@ struct PracticeScreen: View {
     
     @StateObject private var vm: PracticeVM
     
-    init(vm: PracticeVM) {
-        _vm = StateObject(wrappedValue: vm)
+    init(userManager: UserManager) {
+        _vm = StateObject(wrappedValue: PracticeVM(userManager: userManager))
     }
     
     var body: some View {
@@ -22,6 +22,6 @@ struct PracticeScreen: View {
 
 struct PracticeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PracticeScreen(vm: PracticeVM(userManager: UserManager()))
+        PracticeScreen(userManager: UserManager())
     }
 }

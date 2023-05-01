@@ -11,8 +11,8 @@ struct ProfileScreen: View {
     
     @StateObject private var vm: ProfileVM
     
-    init(vm: ProfileVM) {
-        _vm = StateObject(wrappedValue: vm)
+    init(userManager: UserManager) {
+        _vm = StateObject(wrappedValue: ProfileVM(userManager: userManager))
     }
     
     let preferenceOptions = ["Sports", "Movies", "Books"]
@@ -84,6 +84,6 @@ struct ProfileScreen: View {
 
 struct ProfileScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileScreen(vm: ProfileVM(userManager: UserManager()))
+        ProfileScreen(userManager: UserManager())
     }
 }

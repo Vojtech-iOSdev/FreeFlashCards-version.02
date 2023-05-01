@@ -11,8 +11,8 @@ struct HomeScreen: View {
         
     @StateObject private var vm: HomeVM
     
-    init(vm: HomeVM) {
-        _vm = StateObject(wrappedValue: vm)
+    init(userManager: UserManager) {
+        _vm = StateObject(wrappedValue: HomeVM(userManager: userManager))
     }
     
     var body: some View {
@@ -46,7 +46,7 @@ struct HomeScreen: View {
             }
             .padding()
             .fullScreenCover(isPresented: $vm.showCourses) {
-                CoursesView(vm: HomeVM(userManager: UserManager()))
+                CoursesView(userManager: UserManager())
             }
         }
         .overlay(alignment: .top) {
@@ -68,7 +68,7 @@ struct HomeScreen: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            HomeScreen(vm: HomeVM(userManager: UserManager()))
+            HomeScreen(userManager: UserManager())
         }
     }
 }

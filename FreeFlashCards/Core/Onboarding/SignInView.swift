@@ -14,8 +14,8 @@ struct SignInView: View {
     @StateObject private var sharedVM: SharedVM = .init()
     @StateObject private var vm: OnboardingVM
     
-    init(vm: OnboardingVM) {
-        _vm = StateObject(wrappedValue: vm)
+    init(userManager: UserManager) {
+        _vm = StateObject(wrappedValue: OnboardingVM(userManager: userManager))
     }
     
     var body: some View {
@@ -36,7 +36,7 @@ struct SignInView: View {
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(vm: OnboardingVM(userManager: UserManager()))
+        SignInView(userManager: UserManager())
     }
 }
 

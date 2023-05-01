@@ -12,8 +12,8 @@ struct CoursesView: View {
     @StateObject private var vm: HomeVM
     @Environment(\.dismiss) private var dismiss
     
-    init(vm: HomeVM) {
-        _vm = StateObject(wrappedValue: vm)
+    init(userManager: UserManager) {
+        _vm = StateObject(wrappedValue: HomeVM(userManager: userManager))
     }
     
     var body: some View {
@@ -82,6 +82,6 @@ struct CoursesView: View {
 
 struct CoursesView_Previews: PreviewProvider {
     static var previews: some View {
-        CoursesView(vm: HomeVM(userManager: UserManager()))
+        CoursesView(userManager: UserManager())
     }
 }
