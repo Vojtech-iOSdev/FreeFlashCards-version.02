@@ -9,11 +9,7 @@ import SwiftUI
 
 struct HomeScreen: View {
         
-    @StateObject private var vm: HomeVM
-    
-    init(userManager: UserManager) {
-        _vm = StateObject(wrappedValue: HomeVM(userManager: userManager))
-    }
+    @StateObject private var vm: HomeVM = .init()
     
     var body: some View {
         ZStack {
@@ -46,7 +42,7 @@ struct HomeScreen: View {
             }
             .padding()
             .fullScreenCover(isPresented: $vm.showCourses) {
-                CoursesView(userManager: UserManager())
+                CoursesView()
             }
         }
         .overlay(alignment: .top) {
@@ -68,7 +64,7 @@ struct HomeScreen: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            HomeScreen(userManager: UserManager())
+            HomeScreen()
         }
     }
 }

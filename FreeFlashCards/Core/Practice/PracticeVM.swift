@@ -8,14 +8,14 @@
 import Foundation
 
 final class PracticeVM: ObservableObject {
+        
+    @Injected(\.userManager) var userManager: UserManagerProtocol
     
-    let userManager: UserManager
+    @Published private(set) var text: String = "noooo"
     
-    
-    init(userManager: UserManager) {
-        self.userManager = userManager
+    func showText() {
+        text = userManager.testFunc()
     }
-    
     
     
 }

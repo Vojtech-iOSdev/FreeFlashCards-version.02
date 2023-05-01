@@ -10,16 +10,14 @@ import Foundation
 @MainActor
 final class ProfileVM: ObservableObject {
     
-    let userManager: UserManager
+    @Injected(\.userManager) var userManager: UserManagerProtocol
+    @Injected(\.authenticationManager) var authManager: AuthenticationManagerProtocol
     
     @Published private(set) var userInfo: DBUser? = nil
     
-    init(userManager: UserManager) {
-        self.userManager = userManager
-    }
     
     func loadCurrentUserInfo() async throws {
-        let authModel = try AuthenticationManager.shared.getAuthenticatedUser()
+        let authModel = try authManager.getAuthenticatedUser()
         self.userInfo = try await userManager.getUser(userID: authModel.uid)
     }
     

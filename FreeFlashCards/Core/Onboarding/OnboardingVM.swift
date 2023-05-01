@@ -11,16 +11,14 @@ import AuthenticationServices
 @MainActor
 final class OnboardingVM: ObservableObject {
     
-    let userManager: UserManager
-    
-    init(userManager: UserManager) {
-        self.userManager = userManager
-    }
+    @Injected(\.userManager) var userManager: UserManagerProtocol
+    @Injected(\.authenticationManager) var authManager: AuthenticationManagerProtocol
+
     
     func signInGoogle() async throws {
         let helper = SignInGoogleHelper()
         let tokens = try await helper.signIn()
-        let authModel = try await AuthenticationManager.shared.signInWithGoogle(tokens: tokens)
+        let authModel = try await authManager.signInWithGoogle(tokens: tokens)
         let dbUser = DBUser(auth: authModel)
         try await userManager.createNewUser(dbUser: dbUser)
     }
@@ -28,13 +26,13 @@ final class OnboardingVM: ObservableObject {
     func signInApple() async throws {
         let helper = SignInAppleHelper()
         let tokens = try await helper.startSignInWithAppleFlow()
-        let authModel = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
+        let authModel = try await authManager.signInWithApple(tokens: tokens)
         let dbUser = DBUser(auth: authModel)
         try await userManager.createNewUser(dbUser: dbUser)
     }
     
     func signInAnonymously() async throws {
-        let authModel = try await AuthenticationManager.shared.signInAnonymously()
+        let authModel = try await authManager.signInAnonymously()
         let dbUser = DBUser(auth: authModel)
         try await userManager.createNewUser(dbUser: dbUser)
     }

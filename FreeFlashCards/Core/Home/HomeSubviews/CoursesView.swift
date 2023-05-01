@@ -9,12 +9,8 @@ import SwiftUI
 
 struct CoursesView: View {
     
-    @StateObject private var vm: HomeVM
+    @StateObject private var vm: HomeVM = .init()
     @Environment(\.dismiss) private var dismiss
-    
-    init(userManager: UserManager) {
-        _vm = StateObject(wrappedValue: HomeVM(userManager: userManager))
-    }
     
     var body: some View {
         ZStack {
@@ -82,6 +78,6 @@ struct CoursesView: View {
 
 struct CoursesView_Previews: PreviewProvider {
     static var previews: some View {
-        CoursesView(userManager: UserManager())
+        CoursesView()
     }
 }

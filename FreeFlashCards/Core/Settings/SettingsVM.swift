@@ -9,6 +9,8 @@ import Foundation
 
 final class SettingsVM: ObservableObject {
     
+    @Injected(\.authenticationManager) var authManager: AuthenticationManagerProtocol
+    
     @Published var authProviders: [AuthProviderOption] = []
     @Published var authUser: AuthDataResultModel? = nil
     
@@ -18,50 +20,50 @@ final class SettingsVM: ObservableObject {
     func linkGoogleAccount() async throws {
         let helper = SignInGoogleHelper()
         let tokens = try await helper.signIn()
-        self.authUser = try await AuthenticationManager.shared.linkGoogle(tokens: tokens)
+        self.authUser = try await authManager.linkGoogle(tokens: tokens)
     }
     
     func linkAppleAccount() async throws {
         let helper = await SignInAppleHelper()
         let tokens = try await helper.startSignInWithAppleFlow()
-        self.authUser = try await AuthenticationManager.shared.linkApple(tokens: tokens)
+        self.authUser = try await authManager.linkApple(tokens: tokens)
     }
     
     func linkEmailAccount() async throws {
-        self.authUser = try await AuthenticationManager.shared.linkEmail(email: linkEmail, password: linkPassword)
+        self.authUser = try await authManager.linkEmail(email: linkEmail, password: linkPassword)
     }
     
     func loadAuthProviders() {
-        if let providers = try? AuthenticationManager.shared.getProviders() {
+        if let providers = try? authManager.getProviders() {
             authProviders = providers
         }
     }
     
     func loadAuthUser() {
-        authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+        authUser = try? authManager.getAuthenticatedUser()
     }
     
     func signOut() throws {
-        try AuthenticationManager.shared.signOut()
+        try authManager.signOut()
     }
     
     func deleteAccount() async throws {
-        try await AuthenticationManager.shared.deleteAccount()
+        try await authManager.deleteAccount()
         // + also must delete account from firestore (using the userID)
     }
     
     func resetPassword() async throws {
-        let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
+        let authUser = try authManager.getAuthenticatedUser()
         
         guard let email = authUser.email else {
             throw URLError(.badServerResponse)
         }
         
-        try await AuthenticationManager.shared.resetPassword(email: email)
+        try await authManager.resetPassword(email: email)
     }
     
     func updateEmail(newEmail: String) async throws {
-        try await AuthenticationManager.shared.updateEmail(email: newEmail)
+        try await authManager.updateEmail(email: newEmail)
     }
     
 }

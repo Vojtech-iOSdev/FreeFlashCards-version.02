@@ -10,18 +10,15 @@ import Foundation
 @MainActor
 final class HomeVM: ObservableObject {
     
-    let authManager = AuthenticationManager.shared
+    @Injected(\.userManager) var userManager: UserManagerProtocol
+    @Injected(\.authenticationManager) var authManager: AuthenticationManagerProtocol
     let coursesManager = CoursesManager.shared
-    let userManager: UserManager
     
     @Published var showCourses: Bool = false
     @Published private(set) var courses: [Course]? = nil
     @Published var selectedCourse: Course? = nil
     
-    init(userManager: UserManager) {
-        self.userManager = userManager
-        
-    }
+
     
     func getCourses() async {
         do {

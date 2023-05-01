@@ -11,22 +11,21 @@ struct TabBarView: View {
     
     @StateObject private var sharedVM: SharedVM = .init()
     @StateObject private var vm: TabBarVM = .init()
-    let userManager = UserManager()
     
     var body: some View {
         
         NavigationStack {
             if !sharedVM.onboardingProcessCompleted == true {
-                OnboardingView(userManager: userManager)
+                OnboardingView()
             } else {
                 CustomTabBarContainerView(selection: $vm.tabSelection) {
-                    PracticeScreen(userManager: userManager)
+                    PracticeScreen()
                         .tabBarItem(tab: .practice, selection: $vm.tabSelection)
 
-                    HomeScreen(userManager: userManager)
+                    HomeScreen()
                         .tabBarItem(tab: .home, selection: $vm.tabSelection)
                     
-                    ProfileScreen(userManager: userManager)
+                    ProfileScreen()
                         .tabBarItem(tab: .profile, selection: $vm.tabSelection)
                 }
                 .ignoresSafeArea(.keyboard, edges: .bottom)

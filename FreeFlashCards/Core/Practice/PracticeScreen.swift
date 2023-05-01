@@ -9,19 +9,22 @@ import SwiftUI
 
 struct PracticeScreen: View {
     
-    @StateObject private var vm: PracticeVM
-    
-    init(userManager: UserManager) {
-        _vm = StateObject(wrappedValue: PracticeVM(userManager: userManager))
-    }
-    
+    @StateObject private var vm: PracticeVM = .init()
+        
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(vm.text)
+            
+            Button("call func") {
+                vm.showText()
+            }
+            .buttonStyle(.customButtonStyle01)
+        }
     }
 }
 
 struct PracticeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PracticeScreen(userManager: UserManager())
+        PracticeScreen()
     }
 }

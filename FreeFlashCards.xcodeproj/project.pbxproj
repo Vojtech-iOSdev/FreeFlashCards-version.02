@@ -47,6 +47,10 @@
 		81CEDDD729F2C93E00B54BC1 /* CustomTabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CEDDD229F2C93E00B54BC1 /* CustomTabBarContainerView.swift */; };
 		81CEDDDA29F3B07600B54BC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81CEDDD929F3B07600B54BC1 /* GoogleService-Info.plist */; };
 		81CEDDE129F3B9AE00B54BC1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CEDDE029F3B9AE00B54BC1 /* OnboardingView.swift */; };
+		81E98FB029FF8BC8007BB76F /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */; };
+		81E98FB329FFA796007BB76F /* UserManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */; };
+		81E98FB529FFA922007BB76F /* AuthenticationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */; };
+		81E98FB729FFA95D007BB76F /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB629FFA95D007BB76F /* AuthDataResultModel.swift */; };
 		81F0B46329FCE15E00A34BCD /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0B46229FCE15E00A34BCD /* Lesson.swift */; };
 		81F0B46529FCE76700A34BCD /* PersonalCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0B46429FCE76700A34BCD /* PersonalCourse.swift */; };
 		81F0B46729FCEA2800A34BCD /* FLashCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0B46629FCEA2800A34BCD /* FLashCard.swift */; };
@@ -89,6 +93,10 @@
 		81CEDDD229F2C93E00B54BC1 /* CustomTabBarContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarContainerView.swift; sourceTree = "<group>"; };
 		81CEDDD929F3B07600B54BC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81CEDDE029F3B9AE00B54BC1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
+		81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerProtocol.swift; sourceTree = "<group>"; };
+		81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManagerProtocol.swift; sourceTree = "<group>"; };
+		81E98FB629FFA95D007BB76F /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
 		81F0B46229FCE15E00A34BCD /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		81F0B46429FCE76700A34BCD /* PersonalCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalCourse.swift; sourceTree = "<group>"; };
 		81F0B46629FCEA2800A34BCD /* FLashCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLashCard.swift; sourceTree = "<group>"; };
@@ -157,6 +165,7 @@
 				8191A08629F2AB240051223D /* Models */,
 				81A2DF5529F3C8E6007FFA18 /* Utilities */,
 				8191A08729F2AB370051223D /* Managers */,
+				81E98FB129FFA77B007BB76F /* Protocols */,
 				81CEDDD929F3B07600B54BC1 /* GoogleService-Info.plist */,
 				8191A07B29F2AAA20051223D /* Assets.xcassets */,
 				8191A07D29F2AAA20051223D /* Preview Content */,
@@ -190,6 +199,7 @@
 		8191A08629F2AB240051223D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				81E98FB629FFA95D007BB76F /* AuthDataResultModel.swift */,
 				814FD08A29F6F8B20088AFE1 /* DBUser.swift */,
 				8124D34529FC411B001783B0 /* Course.swift */,
 				81F0B46429FCE76700A34BCD /* PersonalCourse.swift */,
@@ -258,6 +268,7 @@
 				81A2DF5629F3C90B007FFA18 /* Utilities.swift */,
 				81A2DF5A29F3DCFE007FFA18 /* SignInGoogleHelper.swift */,
 				81A2DF5C29F5176F007FFA18 /* SignInAppleHelper.swift */,
+				81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -308,6 +319,15 @@
 				81A2DF6029F59E5C007FFA18 /* CreateAccountProcess */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		81E98FB129FFA77B007BB76F /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */,
+				81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -406,10 +426,13 @@
 				8124D34429FC3AA4001783B0 /* CoursesManager.swift in Sources */,
 				81A2DF4A29F3BF23007FFA18 /* SharedVM.swift in Sources */,
 				8191A09229F2B0F50051223D /* SettingsView.swift in Sources */,
+				81E98FB029FF8BC8007BB76F /* DependencyInjection.swift in Sources */,
 				814FD08929F6E9EA0088AFE1 /* UserManager.swift in Sources */,
 				8191A07A29F2AAA10051223D /* HomeScreen.swift in Sources */,
+				81E98FB529FFA922007BB76F /* AuthenticationManagerProtocol.swift in Sources */,
 				8124D34229FC38B2001783B0 /* CoursesView.swift in Sources */,
 				8191A09029F2B0E90051223D /* PracticeScreen.swift in Sources */,
+				81E98FB729FFA95D007BB76F /* AuthDataResultModel.swift in Sources */,
 				81A2DF5D29F5176F007FFA18 /* SignInAppleHelper.swift in Sources */,
 				81CEDDD729F2C93E00B54BC1 /* CustomTabBarContainerView.swift in Sources */,
 				8191A07829F2AAA00051223D /* FreeFlashCardsApp.swift in Sources */,
@@ -421,6 +444,7 @@
 				814FD08529F6E5010088AFE1 /* ProfileScreen.swift in Sources */,
 				81A2DF5F29F59492007FFA18 /* CustomButtonStyle01.swift in Sources */,
 				81C3E18829F81A0700A76489 /* Query+EXT.swift in Sources */,
+				81E98FB329FFA796007BB76F /* UserManagerProtocol.swift in Sources */,
 				81A2DF4829F3BE3E007FFA18 /* OnboardingVM.swift in Sources */,
 				8124D34629FC411C001783B0 /* Course.swift in Sources */,
 				81F0B46729FCEA2800A34BCD /* FLashCard.swift in Sources */,

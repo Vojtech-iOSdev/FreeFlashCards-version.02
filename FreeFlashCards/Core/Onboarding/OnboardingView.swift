@@ -10,11 +10,7 @@ import SwiftUI
 struct OnboardingView: View {
     
     @StateObject private var sharedVM: SharedVM = .init()
-    @StateObject private var vm: OnboardingVM
-    
-    init(userManager: UserManager) {
-        _vm = StateObject(wrappedValue: OnboardingVM(userManager: userManager))
-    }
+    @StateObject private var vm: OnboardingVM = .init()
     
     var body: some View {
         ZStack {
@@ -23,7 +19,7 @@ struct OnboardingView: View {
             VStack(spacing: 40) {
                 
                 NavigationLink {
-                    SignInView(userManager: UserManager())
+                    SignInView()
                 } label: {
                     Text("Sign In")
                 }
@@ -65,6 +61,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(userManager: UserManager())
+        OnboardingView()
     }
 }

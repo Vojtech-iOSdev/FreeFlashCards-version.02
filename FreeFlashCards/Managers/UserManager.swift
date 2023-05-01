@@ -10,14 +10,16 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 
-final class UserManager {
-    
-    //static let shared = UserManager()
-    
+final class UserManager: UserManagerProtocol {
+        
     private let coursesCollection = Firestore.firestore().collection("courses")
     private let usersCollection = Firestore.firestore().collection("users")
     
-//    private init() { }
+    func testFunc() -> String {
+        let text = "final text from Manager"
+        return text
+    }
+    
         
     /*
      private let userCollection: CollectionReference = Firestore.firestore().collection("users")
@@ -89,9 +91,9 @@ final class UserManager {
     }
     
     // Get flashcards for each lesson separetly
-    func getFlashCardsForLesson() {
-        
-    }
+//    func getFlashCardsForLesson() {
+//
+//    }
          
     
     func createNewUser(dbUser: DBUser) async throws {
@@ -123,7 +125,6 @@ final class UserManager {
 //            throw URLError(.badServerResponse)
 //        }
 //
-//
 //        let isAnonymous = data["is_anonymous"] as? Bool
 //        let dateCreated = data["date_created"] as? Date
 //        let email = data["email"] as? String
@@ -136,23 +137,23 @@ final class UserManager {
         let data: [String : Any] = [
             DBUser.CodingKeys.isPremium.rawValue : isPremium
             ]
-        
+
         try await userDocument(userID: userID).updateData(data)
     }
-    
+
     func addUserPreference(userID: String, preference: String) async throws {
         let data: [String : Any] = [
             DBUser.CodingKeys.preferences.rawValue : FieldValue.arrayUnion([preference])
             ]
-        
+
         try await userDocument(userID: userID).updateData(data)
     }
-    
+
     func removeUserPreference(userID: String, preference: String) async throws {
         let data: [String : Any] = [
             DBUser.CodingKeys.preferences.rawValue : FieldValue.arrayRemove([preference])
             ]
-        
+
         try await userDocument(userID: userID).updateData(data)
     }
 }

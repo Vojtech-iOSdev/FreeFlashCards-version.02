@@ -9,12 +9,8 @@ import SwiftUI
 
 struct ProfileScreen: View {
     
-    @StateObject private var vm: ProfileVM
-    
-    init(userManager: UserManager) {
-        _vm = StateObject(wrappedValue: ProfileVM(userManager: userManager))
-    }
-    
+    @StateObject private var vm: ProfileVM = .init()
+        
     let preferenceOptions = ["Sports", "Movies", "Books"]
     
     private func preferenceSelected(text: String) -> Bool {
@@ -84,6 +80,6 @@ struct ProfileScreen: View {
 
 struct ProfileScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileScreen(userManager: UserManager())
+        ProfileScreen()
     }
 }
