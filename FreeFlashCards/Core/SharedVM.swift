@@ -5,7 +5,6 @@
 //  Created by Vojtěch Kalivoda on 22.04.2023.
 //
 
-import Foundation
 import SwiftUI
 
 final class SharedVM: ObservableObject {

@@ -14,44 +14,14 @@ struct CoursesView: View {
     
     var body: some View {
         ZStack {
-            Color.brown.ignoresSafeArea()
+            Background()
             
             VStack {
                 if let courses = vm.courses {
-                    ScrollView(.horizontal) {
+                    ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach(courses) { course in
-                                VStack {
-                                    Text(course.courseName)
-                                        .bold()
-                                        .padding()
-                                        .background(.white)
-                                        .cornerRadius(10)
-                                    
-                                    Spacer()
-                                    
-                                    Text("this is the description of the course. write like 4 line comment about what u want the user to now about the course and idk mayb eadd some picture for language/country")
-                                    
-                                    Spacer()
-                                    
-                                    Button {
-                                        // fetch by course.courseId
-                                        Task {
-                                            vm.testingCreatingDocs()
-                                            //await vm.createPersonalCourse(courseId: course.courseId)
-                                            print("success creating perso course!!!!!")
-                                        }
-                                        
-                                        dismiss()
-                                    } label: {
-                                        Text("Začni Kurz")
-                                    }
-                                    .buttonStyle(.customButtonStyle01)
-                                }
-                                .padding(30)
-                                .frame(width: 300, height: 700)
-                                .background(Color.red)
-                                .cornerRadius(40)
+                                CourseCellView(course: course)
                             }
                         }
                     }

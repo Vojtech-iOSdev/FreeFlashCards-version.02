@@ -21,6 +21,7 @@ protocol AuthenticationManagerProtocol {
     func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel
     func deleteAccount() async throws
+    func deleteAuthorization() async throws
     func signInAnonymously() async throws -> AuthDataResultModel
     func linkEmail(email: String, password: String) async throws -> AuthDataResultModel
     func linkApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel

@@ -24,9 +24,9 @@ struct CustomTabBarView: View {
             }
         }
         .padding(6)
-        .background(Color.white.ignoresSafeArea(edges: .bottom))
+        .background(Color("AccentColor").ignoresSafeArea(edges: .bottom))
         .cornerRadius(10)
-        .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 5)
+        .shadow(color: Color.white.opacity(0.3), radius: 10, x: 0, y: 5)
         .padding(.horizontal)
         .onChange(of: selection, perform: { value in
             withAnimation(.easeInOut) {
@@ -43,9 +43,12 @@ struct CustomTabBarView_Previews: PreviewProvider {
     ]
     
     static var previews: some View {
-        VStack {
-            Spacer()
-            CustomTabBarView(tabs: tabs, selection: .constant(tabs.first!), localSelection: tabs.first!)
+        ZStack {
+            Background()
+            VStack {
+                Spacer()
+                CustomTabBarView(tabs: tabs, selection: .constant(tabs.first!), localSelection: tabs.first!)
+            }
         }
     }
 }
@@ -60,7 +63,7 @@ extension CustomTabBarView {
             Text(tab.title)
                 .font(.system(size: 13, weight: .semibold, design: .rounded))
         }
-        .foregroundColor(localSelection == tab ? Color.indigo : Color.gray)
+        .foregroundColor(localSelection == tab ? Color("lighterColor") : Color.gray)
         .frame(height: 25)
         .padding(.vertical, 18)
         .frame(maxWidth: .infinity)
@@ -68,7 +71,7 @@ extension CustomTabBarView {
             ZStack {
                 if localSelection == tab {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.indigo.opacity(0.2))
+                        .fill(Color("darkerColor"))
                         .matchedGeometryEffect(id: "background_rectangle", in: namespace)
                 }
             }

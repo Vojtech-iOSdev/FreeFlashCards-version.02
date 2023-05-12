@@ -7,6 +7,9 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
 
 enum AuthProviderOption: String {
     case email = "password"
@@ -15,6 +18,8 @@ enum AuthProviderOption: String {
 }
 
 final class AuthenticationManager: AuthenticationManagerProtocol {
+    
+    private let usersCollection = Firestore.firestore().collection("users")
     
     
     func signOut() throws {
@@ -43,6 +48,10 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
         }
         
         return providers
+    }
+    
+    func getUser(userId: String) async throws -> DBUser {
+        try await usersCollection.document(userId).getDocument(as: DBUser.self)
     }
     
 }
@@ -109,8 +118,18 @@ extension AuthenticationManager {
         guard let user = Auth.auth().currentUser else {
             throw URLError(.badServerResponse)
         }
+        let userId = user.uid
         
         try await user.delete()
+        try await usersCollection.document(userId).delete()
+    }
+    
+    func deleteAuthorization() async throws {
+        do {
+            try await Auth.auth().currentUser?.delete()
+        } catch {
+            print("DEBUG: Could not delete authorization: \(error)")
+        }
     }
     
 }

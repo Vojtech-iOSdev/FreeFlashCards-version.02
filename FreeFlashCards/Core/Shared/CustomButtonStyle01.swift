@@ -15,8 +15,8 @@ struct CustomButtonStyle01: ButtonStyle {
             .padding()
             .frame(maxWidth: .infinity)
             .frame(height: 55)
-            .background(Color.white)
-            .foregroundColor(Color.pink)
+            .background(Color("lighterColor"))
+            .foregroundColor(Color("darkerColor"))
             .cornerRadius(10)
             .font(.system(.headline, design: .monospaced, weight: .medium))
     }

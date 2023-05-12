@@ -1,5 +1,5 @@
 //
-//  SignInView.swift
+//  CreateAccountView.swift
 //  FreeFlashCards
 //
 //  Created by Vojtěch Kalivoda on 22.04.2023.
@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleSignIn
 import GoogleSignInSwift
 
-struct SignInView: View {
+struct CreateAccountView: View {
     
     @StateObject private var vm: OnboardingVM = .init()
     
@@ -22,6 +22,9 @@ struct SignInView: View {
                 appleSignInButton
             }
             .padding()
+            .navigationDestination(isPresented: $vm.startOnboarding) {
+                Text("onboarding processs!!!!!")
+            }
             .alert(isPresented: $vm.hasOnboardingError,
                    error: vm.error, actions: { error in
                 Button {
@@ -36,25 +39,26 @@ struct SignInView: View {
     }
 }
 
-struct SignInView_Previews: PreviewProvider {
+struct CreateAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        CreateAccountView()
     }
 }
 
-private extension SignInView {
+private extension CreateAccountView {
     
     var googleSignInButton: some View {
         
         GoogleSignInButton(scheme: .light, style: .wide, state: .normal) {
             Task {
                 do {
-                    try await vm.signInGoogle()
+                    try await vm.signUpGoogle()
                 } catch {
-                    print("DEBUG: error signing in with Google: \(error)")
+                    print(error)
                 }
             }
         }
+        .frame(maxWidth: .infinity)
         .cornerRadius(10)
         .frame(height: 55)
 
@@ -67,11 +71,11 @@ private extension SignInView {
                 do {
                     try await vm.signUpApple()
                 } catch {
-                    print("DEBUG: error signing in with Apple: \(error)")
+                    print(error)
                 }
             }
         } label: {
-            SignInWithAppleButtonViewRepresentable(type: .signIn, style: .white)
+            SignInWithAppleButtonViewRepresentable(type: .signUp, style: .white)
                 .allowsHitTesting(false)
         }
         .frame(height: 55)

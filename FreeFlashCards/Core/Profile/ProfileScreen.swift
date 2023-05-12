@@ -20,7 +20,7 @@ struct ProfileScreen: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.green.ignoresSafeArea()
+                Background()
                 
                 VStack {
                     List {
@@ -56,6 +56,7 @@ struct ProfileScreen: View {
                             
                         }
                     }
+                    
                     .task {
                         try? await vm.loadCurrentUserInfo()
                     }

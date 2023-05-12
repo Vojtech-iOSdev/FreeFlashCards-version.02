@@ -14,12 +14,6 @@ final class UserManager: UserManagerProtocol {
         
     private let coursesCollection = Firestore.firestore().collection("courses")
     private let usersCollection = Firestore.firestore().collection("users")
-    
-    func testFunc() -> String {
-        let text = "final text from Manager"
-        return text
-    }
-    
         
     /*
      private let userCollection: CollectionReference = Firestore.firestore().collection("users")
@@ -51,7 +45,13 @@ final class UserManager: UserManagerProtocol {
     
 //    private var userFavoriteProductsListener: ListenerRegistration? = nil
     
+    func getCourseWithId(courseId: String) async throws -> Course {
+        try await coursesCollection.document(courseId).getDocument(as: Course.self) //.getDocuments(as: Course.self)
+    }
     
+    func getAllCourseLessonsWithId(courseId: String) async throws -> [Lesson] {
+        try await coursesCollection.document(courseId).collection("lessons").getDocuments(as: Lesson.self)
+    }
     
     func userDocument(userID: String) -> DocumentReference {
         usersCollection.document(userID)
@@ -61,11 +61,11 @@ final class UserManager: UserManagerProtocol {
         userDocument(userID: userId).collection("personal_courses")
     }
     
-    func userPersonalCourseDocument(userId: String) -> DocumentReference {
-        userPersonalCoursesCollection(userId: userId).document() //.document(personalCourseId)
+    func userPersonalCourseDocument(userId: String, courseName: String) -> DocumentReference {
+        userPersonalCoursesCollection(userId: userId).document(courseName) //.document(personalCourseId)
     }
-    
-    func createPersonalCourseModel(userId: String, courseId: String) async throws {
+ 
+    func createPersonalCourse(userId: String, courseId: String, courseName: String) async throws {
         // get the selected course from courses and setData as a new personal course which can be modified
         let course = try await getCourseWithId(courseId: courseId)
         
@@ -78,17 +78,33 @@ final class UserManager: UserManagerProtocol {
                                             courseCompleted: false,
                                             lessons: courseLessons)
         
+        try await userPersonalCourseDocument(userId: userId, courseName: courseName).setData(from: personalCourse, merge: false)
+    }
+    
+    func createLessonsForPersonalCourse(userId: String, courseName: String, lesson: Lesson) async throws {
+        try await userPersonalCourseDocument(userId: userId, courseName: courseName).collection("lessons").addDocument(from: lesson)
+    }
+    
+    func getLessonsForPersonalCourse(userId: String, courseName: String) async throws -> [Lesson] {
+        try await userPersonalCoursesCollection(userId: userId).document(courseName).collection("lessons").getDocuments(as: Lesson.self)
+    }
+    
+    func updateCurrentCourseName(userId: String, currentCourseName: String) async throws {
+        let data: [String : Any] = [
+            DBUser.CodingKeys.currentCourseName.rawValue : currentCourseName
+            ]
         
-        try userPersonalCourseDocument(userId: userId).setData(from: personalCourse, merge: false)
+        try await usersCollection.document(userId).updateData(data)
     }
     
-    func getCourseWithId(courseId: String) async throws -> Course {
-        try await coursesCollection.document(courseId).getDocument(as: Course.self) //.getDocuments(as: Course.self)
+    func updateCurrentCourseId(userId: String, currentCourseId: String) async throws {
+        let data: [String : Any] = [
+            DBUser.CodingKeys.currentCourseId.rawValue : currentCourseId
+            ]
+        
+        try await usersCollection.document(userId).updateData(data)
     }
     
-    func getAllCourseLessonsWithId(courseId: String) async throws -> [Lesson] {
-        try await coursesCollection.document(courseId).collection("lessons").getDocuments(as: Lesson.self)
-    }
     
     // Get flashcards for each lesson separetly
 //    func getFlashCardsForLesson() {

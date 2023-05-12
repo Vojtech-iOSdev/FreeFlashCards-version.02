@@ -14,7 +14,7 @@ struct SettingsView: View {
     
     var body: some View {
         ZStack {
-            Color.mint.ignoresSafeArea()
+            Background()
             
             VStack {                
                 signOutButton
@@ -49,7 +49,6 @@ struct SettingsView_Previews: PreviewProvider {
 private extension SettingsView {
     
     var signOutButton: some View {
-        
         Button {
             Task {
                 do {
@@ -66,7 +65,6 @@ private extension SettingsView {
     }
     
     var deleteAccountButton: some View {
-        
         Button(role: .destructive) {
             Task {
                 do {

@@ -11,6 +11,7 @@
 		8124D34229FC38B2001783B0 /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8124D34129FC38B2001783B0 /* CoursesView.swift */; };
 		8124D34429FC3AA4001783B0 /* CoursesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8124D34329FC3AA4001783B0 /* CoursesManager.swift */; };
 		8124D34629FC411C001783B0 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8124D34529FC411B001783B0 /* Course.swift */; };
+		8139436B2A06572700132BC2 /* CourseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8139436A2A06572700132BC2 /* CourseCellView.swift */; };
 		814FD08529F6E5010088AFE1 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FD08429F6E5010088AFE1 /* ProfileScreen.swift */; };
 		814FD08729F6E5180088AFE1 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FD08629F6E5180088AFE1 /* ProfileVM.swift */; };
 		814FD08929F6E9EA0088AFE1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FD08829F6E9EA0088AFE1 /* UserManager.swift */; };
@@ -47,10 +48,13 @@
 		81CEDDD729F2C93E00B54BC1 /* CustomTabBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CEDDD229F2C93E00B54BC1 /* CustomTabBarContainerView.swift */; };
 		81CEDDDA29F3B07600B54BC1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81CEDDD929F3B07600B54BC1 /* GoogleService-Info.plist */; };
 		81CEDDE129F3B9AE00B54BC1 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81CEDDE029F3B9AE00B54BC1 /* OnboardingView.swift */; };
+		81E2C98E2A0E0F2800C6DCC0 /* OnboardingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E2C98D2A0E0F2800C6DCC0 /* OnboardingError.swift */; };
 		81E98FB029FF8BC8007BB76F /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */; };
 		81E98FB329FFA796007BB76F /* UserManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */; };
 		81E98FB529FFA922007BB76F /* AuthenticationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */; };
 		81E98FB729FFA95D007BB76F /* AuthDataResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB629FFA95D007BB76F /* AuthDataResultModel.swift */; };
+		81E98FB929FFE82F007BB76F /* CoursesManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB829FFE82F007BB76F /* CoursesManagerProtocol.swift */; };
+		81E98FBB2A053307007BB76F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FBA2A053307007BB76F /* Background.swift */; };
 		81F0B46329FCE15E00A34BCD /* Lesson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0B46229FCE15E00A34BCD /* Lesson.swift */; };
 		81F0B46529FCE76700A34BCD /* PersonalCourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0B46429FCE76700A34BCD /* PersonalCourse.swift */; };
 		81F0B46729FCEA2800A34BCD /* FLashCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F0B46629FCEA2800A34BCD /* FLashCard.swift */; };
@@ -62,6 +66,7 @@
 		8124D34129FC38B2001783B0 /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
 		8124D34329FC3AA4001783B0 /* CoursesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManager.swift; sourceTree = "<group>"; };
 		8124D34529FC411B001783B0 /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		8139436A2A06572700132BC2 /* CourseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCellView.swift; sourceTree = "<group>"; };
 		814FD08429F6E5010088AFE1 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		814FD08629F6E5180088AFE1 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		814FD08829F6E9EA0088AFE1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
@@ -93,10 +98,13 @@
 		81CEDDD229F2C93E00B54BC1 /* CustomTabBarContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarContainerView.swift; sourceTree = "<group>"; };
 		81CEDDD929F3B07600B54BC1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		81CEDDE029F3B9AE00B54BC1 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		81E2C98D2A0E0F2800C6DCC0 /* OnboardingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingError.swift; sourceTree = "<group>"; };
 		81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerProtocol.swift; sourceTree = "<group>"; };
 		81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManagerProtocol.swift; sourceTree = "<group>"; };
 		81E98FB629FFA95D007BB76F /* AuthDataResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataResultModel.swift; sourceTree = "<group>"; };
+		81E98FB829FFE82F007BB76F /* CoursesManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesManagerProtocol.swift; sourceTree = "<group>"; };
+		81E98FBA2A053307007BB76F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		81F0B46229FCE15E00A34BCD /* Lesson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lesson.swift; sourceTree = "<group>"; };
 		81F0B46429FCE76700A34BCD /* PersonalCourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalCourse.swift; sourceTree = "<group>"; };
 		81F0B46629FCEA2800A34BCD /* FLashCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLashCard.swift; sourceTree = "<group>"; };
@@ -125,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				8124D34129FC38B2001783B0 /* CoursesView.swift */,
+				8139436A2A06572700132BC2 /* CourseCellView.swift */,
 			);
 			path = HomeSubviews;
 			sourceTree = "<group>";
@@ -202,8 +211,8 @@
 				81E98FB629FFA95D007BB76F /* AuthDataResultModel.swift */,
 				814FD08A29F6F8B20088AFE1 /* DBUser.swift */,
 				8124D34529FC411B001783B0 /* Course.swift */,
-				81F0B46429FCE76700A34BCD /* PersonalCourse.swift */,
 				81F0B46229FCE15E00A34BCD /* Lesson.swift */,
+				81F0B46429FCE76700A34BCD /* PersonalCourse.swift */,
 				81F0B46629FCEA2800A34BCD /* FLashCard.swift */,
 			);
 			path = Models;
@@ -251,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				81A2DF5E29F59492007FFA18 /* CustomButtonStyle01.swift */,
+				81E98FBA2A053307007BB76F /* Background.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -269,6 +279,7 @@
 				81A2DF5A29F3DCFE007FFA18 /* SignInGoogleHelper.swift */,
 				81A2DF5C29F5176F007FFA18 /* SignInAppleHelper.swift */,
 				81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */,
+				81E2C98D2A0E0F2800C6DCC0 /* OnboardingError.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -276,7 +287,6 @@
 		81A2DF6029F59E5C007FFA18 /* CreateAccountProcess */ = {
 			isa = PBXGroup;
 			children = (
-				81A2DF4529F3BD54007FFA18 /* CreateAccountView.swift */,
 			);
 			path = CreateAccountProcess;
 			sourceTree = "<group>";
@@ -316,6 +326,7 @@
 				81CEDDE029F3B9AE00B54BC1 /* OnboardingView.swift */,
 				81A2DF4729F3BE3E007FFA18 /* OnboardingVM.swift */,
 				81A2DF4129F3BCBF007FFA18 /* SignInView.swift */,
+				81A2DF4529F3BD54007FFA18 /* CreateAccountView.swift */,
 				81A2DF6029F59E5C007FFA18 /* CreateAccountProcess */,
 			);
 			path = Onboarding;
@@ -326,6 +337,7 @@
 			children = (
 				81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */,
 				81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */,
+				81E98FB829FFE82F007BB76F /* CoursesManagerProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -417,6 +429,7 @@
 				81CEDDD629F2C93E00B54BC1 /* TabBarView.swift in Sources */,
 				81FF80C729FE4143007E79E7 /* PracticeVM.swift in Sources */,
 				81CEDDD429F2C93E00B54BC1 /* CustomTabBarView.swift in Sources */,
+				8139436B2A06572700132BC2 /* CourseCellView.swift in Sources */,
 				8191A08E29F2B07A0051223D /* TabBarVM.swift in Sources */,
 				81F0B46329FCE15E00A34BCD /* Lesson.swift in Sources */,
 				81F0B46529FCE76700A34BCD /* PersonalCourse.swift in Sources */,
@@ -430,12 +443,15 @@
 				814FD08929F6E9EA0088AFE1 /* UserManager.swift in Sources */,
 				8191A07A29F2AAA10051223D /* HomeScreen.swift in Sources */,
 				81E98FB529FFA922007BB76F /* AuthenticationManagerProtocol.swift in Sources */,
+				81E98FB929FFE82F007BB76F /* CoursesManagerProtocol.swift in Sources */,
 				8124D34229FC38B2001783B0 /* CoursesView.swift in Sources */,
 				8191A09029F2B0E90051223D /* PracticeScreen.swift in Sources */,
+				81E98FBB2A053307007BB76F /* Background.swift in Sources */,
 				81E98FB729FFA95D007BB76F /* AuthDataResultModel.swift in Sources */,
 				81A2DF5D29F5176F007FFA18 /* SignInAppleHelper.swift in Sources */,
 				81CEDDD729F2C93E00B54BC1 /* CustomTabBarContainerView.swift in Sources */,
 				8191A07829F2AAA00051223D /* FreeFlashCardsApp.swift in Sources */,
+				81E2C98E2A0E0F2800C6DCC0 /* OnboardingError.swift in Sources */,
 				81CEDDD329F2C93E00B54BC1 /* TabBarItem.swift in Sources */,
 				814FD08729F6E5180088AFE1 /* ProfileVM.swift in Sources */,
 				81A2DF5B29F3DCFE007FFA18 /* SignInGoogleHelper.swift in Sources */,

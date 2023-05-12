@@ -50,6 +50,10 @@ private struct AuthenticationManagerKey: InjectionKey {
     static var currentValue: AuthenticationManagerProtocol = AuthenticationManager()
 }
 
+private struct CoursesManagerKey: InjectionKey {
+    static var currentValue: CoursesManagerProtocol = CoursesManager()
+}
+
 // MARK: INJECTED VALUES EXT
 // if u wanna add another dependency add extension on InjectedValues
 extension InjectedValues {
@@ -63,5 +67,12 @@ extension InjectedValues {
     var authenticationManager: AuthenticationManagerProtocol {
         get { Self[AuthenticationManagerKey.self] }
         set { Self[AuthenticationManagerKey.self] = newValue }
+    }
+}
+
+extension InjectedValues {
+    var coursesManager: CoursesManagerProtocol {
+        get { Self[CoursesManagerKey.self] }
+        set { Self[CoursesManagerKey.self] = newValue }
     }
 }

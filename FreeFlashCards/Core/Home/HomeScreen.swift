@@ -13,50 +13,68 @@ struct HomeScreen: View {
     
     var body: some View {
         ZStack {
-            Color.pink.ignoresSafeArea()
+            Background()
             
             VStack {
-                Button {
-                    // start lesson 1
-                } label: {
-                    NavigationLink {
-                        // show LessonView
-                        Text("Lekce 1")
-                    } label: {
-                        Text("Lekce 1")
+                if let lessons = vm.lessons, !lessons.isEmpty {
+                    ForEach(lessons) { lesson in
+                        Button {
+                            // start lesson 1
+                        } label: {
+                            NavigationLink {
+                                // show LessonView
+                                Text("Lekce 1")
+                            } label: {
+                                Text(lesson.name ?? "no name found")
+                            }
+                            .buttonStyle(.customButtonStyle01)
+                        }
                     }
-                    .buttonStyle(.customButtonStyle01)
-                }
-                
-                Button {
-                    // start "Lekce 2"
-                } label: {
-                    NavigationLink {
-                        // show LessonView
-                        Text("Lekce 2")
-                    } label: {
-                        Text("Lekce 2")
-                    }
-                    .buttonStyle(.customButtonStyle01)
+                } else {
+                    Text("Dont have any lessons for u :/")
                 }
             }
             .padding()
             .fullScreenCover(isPresented: $vm.showCourses) {
                 CoursesView()
             }
+            
         }
-        .overlay(alignment: .top) {
-            Button {
-                vm.showCourses = true
-            } label: {
-                Text("courses")
-                
+        .onAppear {
+            Task {
+                do {
+                    print("DEBUG: on appear called!!")
+                    try await vm.getUser()
+//                    try await vm.getLessonsForStartedCourse()
+                } catch {
+                    print("DEBUG: getUser func error or lessons func error: \(error)")
+                }
             }
-            .font(.title)
-            .buttonStyle(.borderedProminent)
-            .tint(.white)
-            .foregroundColor(.red)
-            .padding()
+        }
+        .onChange(of: vm.dbUser, perform: { newValue in
+            Task {
+                do {
+                    try await vm.getLessonsForStartedCourse()
+                } catch {
+                    print("DEBUG: loading lessonssssss \(error)")
+                }
+
+            }
+        })
+        .overlay(alignment: .top) {
+            VStack {
+                Button {
+                    vm.showCourses = true
+                } label: {
+                    Text("courses")
+                    
+                }
+                .font(.title)
+                .buttonStyle(.borderedProminent)
+                .tint(Color("AccentColor"))
+                .foregroundColor(Color("darkerColor"))
+                .padding()
+            }
         }
     }
 }
