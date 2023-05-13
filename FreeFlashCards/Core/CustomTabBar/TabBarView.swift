@@ -11,27 +11,24 @@ struct TabBarView: View {
     
     @StateObject private var sharedVM: SharedVM = .init()
     @StateObject private var vm: TabBarVM = .init()
+    @StateObject private var routerManager: NavigationRouter = .init()
     
     var body: some View {
-        
-        NavigationStack {
-            if !sharedVM.onboardingProcessCompleted == true {
-                OnboardingView()
-            } else {
-                CustomTabBarContainerView(selection: $vm.tabSelection) {
-                    PracticeScreen()
-                        .tabBarItem(tab: .practice, selection: $vm.tabSelection)
-
-                    HomeScreen()
-                        .tabBarItem(tab: .home, selection: $vm.tabSelection)
-                    
-                    ProfileScreen()
-                        .tabBarItem(tab: .profile, selection: $vm.tabSelection)
-                }
-                .ignoresSafeArea(.keyboard, edges: .bottom)
+        if !sharedVM.onboardingProcessCompleted == true {
+            OnboardingView()
+        } else {
+            CustomTabBarContainerView(selection: $vm.tabSelection) {
+                PracticeScreen()
+                    .tabBarItem(tab: .practice, selection: $vm.tabSelection)
+                
+                HomeScreen()
+                    .tabBarItem(tab: .home, selection: $vm.tabSelection)
+                
+                ProfileScreen()
+                    .tabBarItem(tab: .profile, selection: $vm.tabSelection)
             }
+            .ignoresSafeArea(.keyboard, edges: .bottom)
         }
-
     }
 }
 

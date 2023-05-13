@@ -20,6 +20,8 @@ struct DBUser: Codable, Equatable {
     let currentCourseName: String?
     let currentCourseId: String?
     let onboardingCompleted: Bool
+    let enableNotifications: Bool
+    let dailyGoal: Int?
     
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid
@@ -34,7 +36,8 @@ struct DBUser: Codable, Equatable {
         self.currentCourseName = nil
         self.currentCourseId = nil
         self.onboardingCompleted = false
-
+        self.enableNotifications = false
+        self.dailyGoal = nil
     }
     
     init(
@@ -49,7 +52,9 @@ struct DBUser: Codable, Equatable {
         profileImagePathUrl: String? = nil,
         currentCourseName: String? = nil,
         currentCourseId: String? = nil,
-        onboardingCompleted: Bool = false
+        onboardingCompleted: Bool = false,
+        enableNotifications: Bool = false,
+        dailyGoal: Int? = nil
     ) {
         self.userId = userId
         self.isAnonymous = isAnonymous
@@ -63,6 +68,8 @@ struct DBUser: Codable, Equatable {
         self.currentCourseName = currentCourseName
         self.currentCourseId = currentCourseId
         self.onboardingCompleted = onboardingCompleted
+        self.enableNotifications = enableNotifications
+        self.dailyGoal = dailyGoal
     }
     
     //    func togglePremiumStatus() -> DBUser {
@@ -95,6 +102,8 @@ struct DBUser: Codable, Equatable {
         case currentCourseName = "current_course_name"
         case currentCourseId = "current_course_id"
         case onboardingCompleted = "onboarding_completed"
+        case enableNotifications = "enable_notifications"
+        case dailyGoal = "daily_goal"
     }
     
     init(from decoder: Decoder) throws {
@@ -111,6 +120,8 @@ struct DBUser: Codable, Equatable {
         self.currentCourseName = try container.decodeIfPresent(String.self, forKey: .currentCourseName)
         self.currentCourseId = try container.decodeIfPresent(String.self, forKey: .currentCourseId)
         self.onboardingCompleted = try container.decode(Bool.self, forKey: .onboardingCompleted)
+        self.enableNotifications = try container.decode(Bool.self, forKey: .enableNotifications)
+        self.dailyGoal = try container.decodeIfPresent(Int.self, forKey: .dailyGoal)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -127,6 +138,8 @@ struct DBUser: Codable, Equatable {
         try container.encodeIfPresent(self.currentCourseName, forKey: .currentCourseName)
         try container.encodeIfPresent(self.currentCourseId, forKey: .currentCourseId)
         try container.encodeIfPresent(self.onboardingCompleted, forKey: .onboardingCompleted)
+        try container.encodeIfPresent(self.enableNotifications, forKey: .enableNotifications)
+        try container.encodeIfPresent(self.dailyGoal, forKey: .dailyGoal)
 
     }
     

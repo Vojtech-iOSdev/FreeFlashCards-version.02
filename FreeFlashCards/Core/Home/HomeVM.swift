@@ -36,7 +36,6 @@ final class HomeVM: ObservableObject {
         } catch {
             print("DEBUG: error getting currentUser \(error)")
         }
-        
     }
     
     func getCourses() async {

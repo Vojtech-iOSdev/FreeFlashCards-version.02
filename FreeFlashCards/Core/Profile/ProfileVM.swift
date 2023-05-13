@@ -26,17 +26,25 @@ final class ProfileVM: ObservableObject {
         let currentPremiumStatus = userInfo.isPremium ?? false
         
         Task {
-            try await userManager.updateUserPremiumStatus(userID: userInfo.userId,isPremium: !currentPremiumStatus)
-            self.userInfo = try await userManager.getUser(userID: userInfo.userId)
-        }  
+            do {
+                try await userManager.updateUserPremiumStatus(userID: userInfo.userId,isPremium: !currentPremiumStatus)
+                self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+            } catch {
+                print("erorr1 profileview: \(error)")
+            }
+        }
     }
     
     func addUserPreference(text: String) {
         guard let userInfo else { return }
         
         Task {
-            try await userManager.addUserPreference(userID: userInfo.userId, preference: text)
-            self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+            do {
+                try await userManager.addUserPreference(userID: userInfo.userId, preference: text)
+                self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+            } catch {
+                print("erorr2 profileview: \(error)")
+            }
         }
     }
     
@@ -44,8 +52,12 @@ final class ProfileVM: ObservableObject {
         guard let userInfo else { return }
         
         Task {
-            try await userManager.removeUserPreference(userID: userInfo.userId, preference: text)
-            self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+            do {
+                try await userManager.removeUserPreference(userID: userInfo.userId, preference: text)
+                self.userInfo = try await userManager.getUser(userID: userInfo.userId)
+            } catch {
+                print("erorr3 profileview: \(error)")
+            }
         }
     }
         

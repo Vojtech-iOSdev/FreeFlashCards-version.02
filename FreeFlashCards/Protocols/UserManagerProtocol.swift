@@ -17,6 +17,8 @@ protocol UserManagerProtocol {
     
     func updateCurrentCourseName(userId: String, currentCourseName: String) async throws
     func updateCurrentCourseId(userId: String, currentCourseId: String) async throws
+    func updateEnableNotifications(userId: String, enableNotifications: Bool) async throws
+    func setCurrentDailyGoal(userId: String, selectedDailyGoal: Int) async throws
     
     func getCourseWithId(courseId: String) async throws -> Course
     func getAllCourseLessonsWithId(courseId: String) async throws -> [Lesson]

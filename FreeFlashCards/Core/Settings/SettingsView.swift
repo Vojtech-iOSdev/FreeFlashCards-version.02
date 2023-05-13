@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     
+    @StateObject private var routerManager: NavigationRouter = .init()
     @StateObject private var sharedVM: SharedVM = .init()
     @StateObject private var vm: SettingsVM = .init()
     
@@ -54,6 +55,7 @@ private extension SettingsView {
                 do {
                     try vm.signOut()
                     sharedVM.onboardingProcessCompleted = false
+                    routerManager.reset()
                 } catch {
                     print(error.localizedDescription)
                 }

@@ -11,6 +11,7 @@ import GoogleSignInSwift
 
 struct CreateAccountView: View {
     
+    @EnvironmentObject private var routerManager: NavigationRouter
     @StateObject private var vm: OnboardingVM = .init()
     
     var body: some View {
@@ -23,7 +24,7 @@ struct CreateAccountView: View {
             }
             .padding()
             .navigationDestination(isPresented: $vm.startOnboarding) {
-                Text("onboarding processs!!!!!")
+                LanguagesView()
             }
             .alert(isPresented: $vm.hasOnboardingError,
                    error: vm.error, actions: { error in
@@ -36,12 +37,18 @@ struct CreateAccountView: View {
                 Text(error.message)
             })
         }
+        .onAppear {
+            print("routess are: \(routerManager.routes)")
+        }
     }
 }
 
 struct CreateAccountView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateAccountView()
+        NavigationStack {
+            CreateAccountView()
+                .environmentObject(NavigationRouter())
+        }
     }
 }
 

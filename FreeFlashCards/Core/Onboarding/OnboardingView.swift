@@ -9,11 +9,11 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    @StateObject private var sharedVM: SharedVM = .init()
+    @StateObject private var routerManager: NavigationRouter = .init()
     @StateObject private var vm: OnboardingVM = .init()
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $routerManager.routes) {
             ZStack {
                 Background()
                 
@@ -21,18 +21,22 @@ struct OnboardingView: View {
                     greeting
                     
                     perks
-              
+                    
                     buttons
                 }
                 .padding()
             }
+            .navigationDestination(for: Route.self) { $0 }
         }
+        .environmentObject(routerManager)
     }
 }
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        NavigationStack {
+            OnboardingView()
+        }
     }
 }
 
@@ -75,23 +79,35 @@ private extension OnboardingView {
     
     var buttons: some View {
         VStack(spacing: 20) {
-            NavigationLink {
-                CreateAccountView()
+            Button {
+                routerManager.push(to: .createAccountView)
+                print(routerManager.routes)
             } label: {
                 Text("Create Account")
             }
             .buttonStyle(.customButtonStyle01)
+
+//            NavigationLink(value: Route.createAccountView) {
+//                Text("Create Account")
+//            }
+//            .buttonStyle(.customButtonStyle01)
             
             Rectangle()
                 .frame(width: 320, height: 2)
                 .foregroundColor(Color("lighterColor"))
             
-            NavigationLink {
-                SignInView()
+            Button {
+                routerManager.push(to: .signInView)
+                print(routerManager.routes)
             } label: {
                 Text("Sign In")
             }
             .buttonStyle(.customButtonStyle01)
+            
+//            NavigationLink(value: Route.signInView) {
+//                Text("Sign In")
+//            }
+//            .buttonStyle(.customButtonStyle01)
             
             Rectangle()
                 .frame(width: 320, height: 2)
@@ -101,7 +117,7 @@ private extension OnboardingView {
                 Task {
                     do {
                         try await vm.signInAnonymously()
-                        sharedVM.onboardingProcessCompleted = true
+                        vm.onboardingProcessCompleted = true
                     } catch {
                         print(error.localizedDescription)
                     }

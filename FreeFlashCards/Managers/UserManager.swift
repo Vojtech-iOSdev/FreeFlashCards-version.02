@@ -15,35 +15,6 @@ final class UserManager: UserManagerProtocol {
     private let coursesCollection = Firestore.firestore().collection("courses")
     private let usersCollection = Firestore.firestore().collection("users")
         
-    /*
-     private let userCollection: CollectionReference = Firestore.firestore().collection("users")
-     
-     private func userDocument(userId: String) -> DocumentReference {
-         userCollection.document(userId)
-     }
-     
-     private func userFavoriteProductCollection(userId: String) -> CollectionReference {
-         userDocument(userId: userId).collection("favorite_products")
-     }
-     
-     private func userFavoriteProductDocument(userId: String, favoriteProductId: String) -> DocumentReference {
-         userFavoriteProductCollection(userId: userId).document(favoriteProductId)
-     }
-     */
-    
-//    private let encoder: Firestore.Encoder = {
-//        let encoder = Firestore.Encoder()
-////        encoder.keyEncodingStrategy = .convertToSnakeCase
-//        return encoder
-//    }()
-//
-//    private let decoder: Firestore.Decoder = {
-//        let decoder = Firestore.Decoder()
-////        decoder.keyDecodingStrategy = .convertFromSnakeCase
-//        return decoder
-//    }()
-    
-//    private var userFavoriteProductsListener: ListenerRegistration? = nil
     
     func getCourseWithId(courseId: String) async throws -> Course {
         try await coursesCollection.document(courseId).getDocument(as: Course.self) //.getDocuments(as: Course.self)
@@ -105,6 +76,23 @@ final class UserManager: UserManagerProtocol {
         try await usersCollection.document(userId).updateData(data)
     }
     
+    func updateEnableNotifications(userId: String, enableNotifications: Bool) async throws {
+        let data: [String : Any] = [
+            DBUser.CodingKeys.enableNotifications.rawValue : enableNotifications
+            ]
+        
+        try await usersCollection.document(userId).updateData(data)
+    }
+    
+    func setCurrentDailyGoal(userId: String, selectedDailyGoal: Int) async throws {
+        let data: [String : Any] = [
+            DBUser.CodingKeys.dailyGoal.rawValue : selectedDailyGoal
+            ]
+        
+        print(userId)
+        print(data)
+        try await userDocument(userID: userId).setData(data, merge: true)
+    }
     
     // Get flashcards for each lesson separetly
 //    func getFlashCardsForLesson() {
