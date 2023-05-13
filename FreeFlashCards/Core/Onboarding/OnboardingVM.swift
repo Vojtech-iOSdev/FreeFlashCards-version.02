@@ -106,16 +106,21 @@ final class OnboardingVM: ObservableObject {
     }
     
     // MARK: ONBOARDING INPUTS
+    private func getUserId() throws -> String {
+        let user = try authManager.getAuthenticatedUser()
+        return user.uid
+    }
+    
     func updateCurrentCourseName() async throws {
-        guard let userId = currentUser?.uid else { return }
         guard let courseName = selectedLanguage?.currentCourseName else { return }
+        let userId = try getUserId()
         
         try await userManager.updateCurrentCourseName(userId: userId, currentCourseName: courseName)
     }
     
     func updateCurrentCourseId() async throws {
-        guard let userId = currentUser?.uid else { return }
         guard let courseId = selectedLanguage?.currentCourseId else { return }
+        let userId = try getUserId()
         
         try await userManager.updateCurrentCourseId(userId: userId, currentCourseId: courseId)
     }
@@ -129,11 +134,21 @@ final class OnboardingVM: ObservableObject {
 //    }
     
     func setCurrentDailyGoal() async throws {
-        guard let userId = currentUser?.uid else { return }
         guard let selectedDailyGoal else { return }
+        let userId = try getUserId()
         
+        print(userId)
+        print(selectedDailyGoal)
         try await userManager.setCurrentDailyGoal(userId: userId, selectedDailyGoal: selectedDailyGoal)
     }
     
-    
+    func updateOnboardingCompleted(onboardingCompleted: Bool) async throws {
+        guard let selectedDailyGoal else { return }
+        let userId = try getUserId()
+        
+        print(userId)
+        print(selectedDailyGoal)
+        try await userManager.updateOnboardingCompleted(userId: userId, onboardingCompleted: onboardingCompleted)
+
+    }
 } 

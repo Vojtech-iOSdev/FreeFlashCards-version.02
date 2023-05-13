@@ -12,7 +12,7 @@ struct DailyGoalView: View {
     @EnvironmentObject private var routerManager: NavigationRouter
     @StateObject private var vm: OnboardingVM = .init()
     
-    // refactor this to custom modifier later
+    // refactor this to custom modifier later on, if u ended up using it in your UI :P
     init() {
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
@@ -66,7 +66,12 @@ struct DailyGoalView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
                             Task {
-                                try await vm.setCurrentDailyGoal()
+                                do {
+                                    try await vm.setCurrentDailyGoal()
+                                    try await vm.updateOnboardingCompleted(onboardingCompleted: true)
+                                } catch {
+                                    print("bad server blablaaa: \(error)")
+                                }
                             }
                             vm.startOnboarding = false
                             vm.onboardingProcessCompleted = true

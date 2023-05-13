@@ -94,6 +94,14 @@ final class UserManager: UserManagerProtocol {
         try await userDocument(userID: userId).setData(data, merge: true)
     }
     
+    func updateOnboardingCompleted(userId: String, onboardingCompleted: Bool) async throws {
+        let data: [String : Any] = [
+            DBUser.CodingKeys.onboardingCompleted.rawValue : onboardingCompleted
+            ]
+        
+        try await usersCollection.document(userId).updateData(data)
+    }
+    
     // Get flashcards for each lesson separetly
 //    func getFlashCardsForLesson() {
 //
