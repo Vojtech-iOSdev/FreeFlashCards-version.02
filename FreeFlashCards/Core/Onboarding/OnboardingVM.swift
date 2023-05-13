@@ -125,6 +125,7 @@ final class OnboardingVM: ObservableObject {
 //        guard let dailyGoal = selectedDailyGoal else { return }
 //
 //        try await userManager.updateCurrentDailyGoal(userId: userId, selectedDailyGoal: dailyGoal)
+//
 //    }
     
     func setCurrentDailyGoal() async throws {
