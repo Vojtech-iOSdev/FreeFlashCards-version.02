@@ -35,13 +35,13 @@ struct PracticeScreen: View {
                             Text($0.courseName)
                             Text($0.courseId)
                             Text($0.courseCompleted?.description ?? "no value")
-                            Text($0.stringArray?.joined(separator: " ") ?? "no value")
+//                            Text($0.stringArray?.joined(separator: " ") ?? "no value")
                             Text("")
                         }
                         
-                        ForEach(courses) { course in
-                            Text(course.stringArray?.joined(separator: " ") ?? "no value")
-                        }
+//                        ForEach(courses) { course in
+//                            Text(course.stringArray?.joined(separator: " ") ?? "no value")
+//                        }
                         
                         Text(queryCourses.first?.courseName ?? "no value")
                         

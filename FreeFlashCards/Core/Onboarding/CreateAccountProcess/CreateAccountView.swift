@@ -19,8 +19,9 @@ struct CreateAccountView: View {
             Background()
             
             VStack {
-                googleSignInButton
-                appleSignInButton
+                googleSignUpButton
+                appleSignUpButton
+                facebookSignUpButton
             }
             .padding()
             .navigationDestination(isPresented: $vm.startOnboarding) {
@@ -54,7 +55,7 @@ struct CreateAccountView_Previews: PreviewProvider {
 
 private extension CreateAccountView {
     
-    var googleSignInButton: some View {
+    var googleSignUpButton: some View {
         
         GoogleSignInButton(scheme: .light, style: .wide, state: .normal) {
             Task {
@@ -71,7 +72,7 @@ private extension CreateAccountView {
 
     }
     
-    var appleSignInButton: some View {
+    var appleSignUpButton: some View {
         
         Button {
             Task {
@@ -86,6 +87,32 @@ private extension CreateAccountView {
                 .allowsHitTesting(false)
         }
         .frame(height: 55)
+    }
+    
+    var facebookSignUpButton: some View {
+        
+        Button {
+            Task {
+                do {
+                    try await vm.signUpFacebook()
+                } catch {
+                    print("DEBUG: error signing up with Facebook: \(error)")
+                }
+            }
+        } label: {
+            HStack {
+                Image(systemName: "person.fill")
+                Image(systemName: "book.fill")
+                Text("Sign up with Facebook")
+            }
+        }
+        .padding()
+        .frame(maxWidth: .infinity)
+        .frame(height: 55)
+        .background(Color.white)
+        .foregroundColor(Color.blue)
+        .cornerRadius(5)
+        .font(.system(.title3, design: .default, weight: .medium))
     }
     
 }

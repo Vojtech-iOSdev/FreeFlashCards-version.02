@@ -28,7 +28,6 @@ struct SignInWithAppleButtonViewRepresentable: UIViewRepresentable {
     func updateUIView(_ uiView: ASAuthorizationAppleIDButton, context: Context) {
         
     }
-    
 }
 
 @MainActor

@@ -4,6 +4,14 @@
 <dict>
 	<key>CFBundleURLTypes</key>
 	<array>
+        <dict>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb784041516358882</string>
+            </array>
+        </dict>
+        
+        
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
@@ -17,5 +25,25 @@
 	</array>
 	<key>GIDClientID</key>
 	<string>686798581659-c75hr9v4ld7npi0oun76f53rv1ihtqfl.apps.googleusercontent.com</string>
+    
+    
+    
+<!--    <key>CFBundleURLTypes</key>-->
+<!--    <array>-->
+<!--        -->
+<!--    </array>-->
+    <key>FacebookAppID</key>
+    <string>784041516358882</string>
+    <key>FacebookClientToken</key>
+    <string>63e185e515b089b14c0aa00a182513c4</string>
+    <key>FacebookDisplayName</key>
+    <string>FreeFlashCards</string>
+    
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+    </array>
+    
 </dict>
 </plist>

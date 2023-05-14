@@ -26,15 +26,29 @@ struct CoursesView: View {
                         }
                     }
                 } else {
-                    ProgressView()
+                    VStack {
+                        Text("Loading")
+                        ProgressView()
+                    }
+                    .foregroundColor(Color("AccentColor"))
                 }
-                
             }
             .padding()
         }
         .task {
             await vm.getCourses()
         }
+        .alert("Try again", isPresented: $vm.retryLoadingData, actions: {
+            Button {
+                Task {
+                   await vm.getCourses()
+                    vm.retryLoadingData = false
+                }
+            } label: {
+                Text("Retry")
+            }
+
+        })
         .overlay(alignment: .topLeading) {
             Image(systemName: "xmark.circle")
                 .onTapGesture {
@@ -42,6 +56,7 @@ struct CoursesView: View {
                 }
                 .font(.largeTitle)
                 .padding(.horizontal, 26)
+                .foregroundColor(Color("AccentColor"))
         }
     }
 }

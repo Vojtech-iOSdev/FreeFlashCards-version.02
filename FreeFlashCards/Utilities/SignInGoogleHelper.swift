@@ -10,7 +10,7 @@ import GoogleSignIn
 import GoogleSignInSwift
 
 
-struct googleSignInResultModel {
+struct GoogleSignInResultModel {
     let idToken: String
     let accessToken: String
     let email: String?
@@ -20,7 +20,7 @@ struct googleSignInResultModel {
 final class SignInGoogleHelper {
     
     @MainActor
-    func signIn() async throws -> googleSignInResultModel {
+    func signIn() async throws -> GoogleSignInResultModel {
         
         //... need to find the TopUIViewController in order for this to be reusable!!! ...//
         guard let topVC = Utilities.shared.topViewController() else {
@@ -36,7 +36,7 @@ final class SignInGoogleHelper {
         let email = gidSignInResult.user.profile?.email
         let name = gidSignInResult.user.profile?.givenName
         
-        let tokens = googleSignInResultModel(idToken: idToken, accessToken: accessToken, email: email, name: name)
+        let tokens = GoogleSignInResultModel(idToken: idToken, accessToken: accessToken, email: email, name: name)
         
         return tokens
     }

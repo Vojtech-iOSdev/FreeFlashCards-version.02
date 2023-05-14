@@ -15,6 +15,7 @@ final class HomeVM: ObservableObject {
     @Injected(\.coursesManager) var coursesManager: CoursesManagerProtocol
         
     @Published var showCourses: Bool = false
+    @Published var retryLoadingData: Bool = false
     @Published private(set) var courses: [Course]? = nil
     @Published var selectedCourse: Course? = nil
     @Published var lessons: [Lesson]? = nil
@@ -42,8 +43,8 @@ final class HomeVM: ObservableObject {
         do {
             courses = try await coursesManager.getCourses()
         } catch {
-            // show alert: restart loading courses
-            print("error getting coursesss: \(error)")
+            retryLoadingData = true
+            print("Error getting coursesss: \(error)")
         }
     }
     
@@ -67,9 +68,14 @@ final class HomeVM: ObservableObject {
         guard let uid = currentUser?.uid else { throw URLError(.badServerResponse) }
         guard let currentCourseName = dbUser?.currentCourseName else { throw URLError(.badURL) }
         
-        let personalLessons = try await userManager.getLessonsForPersonalCourse(userId: uid, courseName: currentCourseName)
-        self.lessons = personalLessons
-        print("personal lessons print: \(personalLessons)")
+        do {
+            let personalLessons = try await userManager.getLessonsForPersonalCourse(userId: uid, courseName: currentCourseName)
+            self.lessons = personalLessons
+            print("personal lessons print: \(personalLessons)")
+        } catch {
+            print("DEBUG: loading lessons error: \(error)")
+            retryLoadingData = true
+        }
     }
     
     func createPersonalCourseForUser() async throws {

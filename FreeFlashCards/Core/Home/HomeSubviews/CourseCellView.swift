@@ -31,7 +31,7 @@ struct CourseCellView: View {
 
 struct CourseCellView_Previews: PreviewProvider {
     static var previews: some View {
-        CourseCellView(course: Course(courseId: "idk", courseName: "idk", courseCompleted: true, stringArray: ["idk", "idk", "idk"]))
+        CourseCellView(course: Course(courseId: "idk", courseName: "idk", courseCompleted: true))
     }
 }
 

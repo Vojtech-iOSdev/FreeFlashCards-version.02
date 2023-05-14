@@ -16,6 +16,8 @@
 		814FD08729F6E5180088AFE1 /* ProfileVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FD08629F6E5180088AFE1 /* ProfileVM.swift */; };
 		814FD08929F6E9EA0088AFE1 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FD08829F6E9EA0088AFE1 /* UserManager.swift */; };
 		814FD08B29F6F8B20088AFE1 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814FD08A29F6F8B20088AFE1 /* DBUser.swift */; };
+		817D33B22A10D3E10021176F /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 817D33B12A10D3E10021176F /* FacebookLogin */; };
+		817D33B52A10DFC90021176F /* SignInFacebookHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817D33B42A10DFC90021176F /* SignInFacebookHelper.swift */; };
 		8191A07829F2AAA00051223D /* FreeFlashCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191A07729F2AAA00051223D /* FreeFlashCardsApp.swift */; };
 		8191A07A29F2AAA10051223D /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191A07929F2AAA10051223D /* HomeScreen.swift */; };
 		8191A07C29F2AAA20051223D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8191A07B29F2AAA20051223D /* Assets.xcassets */; };
@@ -54,6 +56,7 @@
 		81E2C9942A0E5A4300C6DCC0 /* Languages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E2C9932A0E5A4300C6DCC0 /* Languages.swift */; };
 		81E2C9962A0F817C00C6DCC0 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E2C9952A0F817C00C6DCC0 /* Route.swift */; };
 		81E2C9982A0F863600C6DCC0 /* NavigationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E2C9972A0F863600C6DCC0 /* NavigationRouter.swift */; };
+		81E2C99A2A0FE14A00C6DCC0 /* CreateAccountVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E2C9992A0FE14A00C6DCC0 /* CreateAccountVM.swift */; };
 		81E98FB029FF8BC8007BB76F /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */; };
 		81E98FB329FFA796007BB76F /* UserManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */; };
 		81E98FB529FFA922007BB76F /* AuthenticationManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */; };
@@ -76,6 +79,8 @@
 		814FD08629F6E5180088AFE1 /* ProfileVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVM.swift; sourceTree = "<group>"; };
 		814FD08829F6E9EA0088AFE1 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		814FD08A29F6F8B20088AFE1 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
+		817D33B32A10D7780021176F /* FreeFlashCards.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FreeFlashCards.entitlements; sourceTree = "<group>"; };
+		817D33B42A10DFC90021176F /* SignInFacebookHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFacebookHelper.swift; sourceTree = "<group>"; };
 		8191A07429F2AAA00051223D /* FreeFlashCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeFlashCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8191A07729F2AAA00051223D /* FreeFlashCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeFlashCardsApp.swift; sourceTree = "<group>"; };
 		8191A07929F2AAA10051223D /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -109,6 +114,7 @@
 		81E2C9932A0E5A4300C6DCC0 /* Languages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Languages.swift; sourceTree = "<group>"; };
 		81E2C9952A0F817C00C6DCC0 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		81E2C9972A0F863600C6DCC0 /* NavigationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationRouter.swift; sourceTree = "<group>"; };
+		81E2C9992A0FE14A00C6DCC0 /* CreateAccountVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVM.swift; sourceTree = "<group>"; };
 		81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		81E98FB229FFA796007BB76F /* UserManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerProtocol.swift; sourceTree = "<group>"; };
 		81E98FB429FFA922007BB76F /* AuthenticationManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManagerProtocol.swift; sourceTree = "<group>"; };
@@ -126,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				817D33B22A10D3E10021176F /* FacebookLogin in Frameworks */,
 				81C3E16929F7B16100A76489 /* FirebaseAnalyticsSwift in Frameworks */,
 				81C3E16B29F7B16100A76489 /* FirebaseAuth in Frameworks */,
 				81A2DF5329F3C365007FFA18 /* GoogleSignInSwift in Frameworks */,
@@ -177,6 +184,7 @@
 		8191A07629F2AAA00051223D /* FreeFlashCards */ = {
 			isa = PBXGroup;
 			children = (
+				817D33B32A10D7780021176F /* FreeFlashCards.entitlements */,
 				81A2DF5429F3C3D0007FFA18 /* Info.plist */,
 				8191A07729F2AAA00051223D /* FreeFlashCardsApp.swift */,
 				8191A08529F2AB150051223D /* Core */,
@@ -288,6 +296,7 @@
 				81A2DF5629F3C90B007FFA18 /* Utilities.swift */,
 				81A2DF5A29F3DCFE007FFA18 /* SignInGoogleHelper.swift */,
 				81A2DF5C29F5176F007FFA18 /* SignInAppleHelper.swift */,
+				817D33B42A10DFC90021176F /* SignInFacebookHelper.swift */,
 				81E98FAF29FF8BC8007BB76F /* DependencyInjection.swift */,
 				81E2C98D2A0E0F2800C6DCC0 /* OnboardingError.swift */,
 				81E2C9932A0E5A4300C6DCC0 /* Languages.swift */,
@@ -300,6 +309,8 @@
 		81A2DF6029F59E5C007FFA18 /* CreateAccountProcess */ = {
 			isa = PBXGroup;
 			children = (
+				81A2DF4529F3BD54007FFA18 /* CreateAccountView.swift */,
+				81E2C9992A0FE14A00C6DCC0 /* CreateAccountVM.swift */,
 				81E2C98F2A0E587700C6DCC0 /* LanguagesView.swift */,
 				81E2C9912A0E58A600C6DCC0 /* DailyGoalView.swift */,
 			);
@@ -341,7 +352,6 @@
 				81CEDDE029F3B9AE00B54BC1 /* OnboardingView.swift */,
 				81A2DF4729F3BE3E007FFA18 /* OnboardingVM.swift */,
 				81A2DF4129F3BCBF007FFA18 /* SignInView.swift */,
-				81A2DF4529F3BD54007FFA18 /* CreateAccountView.swift */,
 				81A2DF6029F59E5C007FFA18 /* CreateAccountProcess */,
 			);
 			path = Onboarding;
@@ -381,6 +391,7 @@
 				81C3E16A29F7B16100A76489 /* FirebaseAuth */,
 				81C3E16C29F7B16100A76489 /* FirebaseFirestore */,
 				81C3E16E29F7B16100A76489 /* FirebaseFirestoreSwift */,
+				817D33B12A10D3E10021176F /* FacebookLogin */,
 			);
 			productName = FreeFlashCards;
 			productReference = 8191A07429F2AAA00051223D /* FreeFlashCards.app */;
@@ -413,6 +424,7 @@
 			packageReferences = (
 				81CEDDDB29F3B19600B54BC1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				81A2DF4F29F3C365007FFA18 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				817D33B02A10D3E10021176F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 8191A07529F2AAA00051223D /* Products */;
 			projectDirPath = "";
@@ -461,6 +473,7 @@
 				814FD08929F6E9EA0088AFE1 /* UserManager.swift in Sources */,
 				8191A07A29F2AAA10051223D /* HomeScreen.swift in Sources */,
 				81E98FB529FFA922007BB76F /* AuthenticationManagerProtocol.swift in Sources */,
+				81E2C99A2A0FE14A00C6DCC0 /* CreateAccountVM.swift in Sources */,
 				81E2C9902A0E587700C6DCC0 /* LanguagesView.swift in Sources */,
 				81E98FB929FFE82F007BB76F /* CoursesManagerProtocol.swift in Sources */,
 				8124D34229FC38B2001783B0 /* CoursesView.swift in Sources */,
@@ -488,6 +501,7 @@
 				81CEDDD529F2C93E00B54BC1 /* TabBarItemsPreferenceKey.swift in Sources */,
 				81A2DF4229F3BCBF007FFA18 /* SignInView.swift in Sources */,
 				81E2C9942A0E5A4300C6DCC0 /* Languages.swift in Sources */,
+				817D33B52A10DFC90021176F /* SignInFacebookHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,6 +627,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FreeFlashCards/FreeFlashCards.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FreeFlashCards/Preview Content\"";
@@ -644,6 +659,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FreeFlashCards/FreeFlashCards.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FreeFlashCards/Preview Content\"";
@@ -694,6 +710,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		817D33B02A10D3E10021176F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.0;
+			};
+		};
 		81A2DF4F29F3C365007FFA18 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
@@ -713,6 +737,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		817D33B12A10D3E10021176F /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 817D33B02A10D3E10021176F /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
 		81A2DF5029F3C365007FFA18 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 81A2DF4F29F3C365007FFA18 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

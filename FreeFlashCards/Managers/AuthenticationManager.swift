@@ -15,6 +15,7 @@ enum AuthProviderOption: String {
     case email = "password"
     case google = "google.com"
     case apple = "apple.com"
+    case facebook = "facebook.com"
 }
 
 final class AuthenticationManager: AuthenticationManagerProtocol {
@@ -96,22 +97,29 @@ extension AuthenticationManager {
 extension AuthenticationManager {
     
     @discardableResult
-    func signInWithGoogle(tokens: googleSignInResultModel) async throws -> AuthDataResultModel {
-        let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)
+    func signInWithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
+        let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken,
+                                                       accessToken: tokens.accessToken)
         return try await signIn(credential: credential)
     }
     
     @discardableResult
     func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
-        let credential = OAuthProvider.credential(withProviderID: AuthProviderOption.apple.rawValue, idToken: tokens.token, rawNonce: tokens.nonce)
+        let credential = OAuthProvider.credential(withProviderID: AuthProviderOption.apple.rawValue,
+                                                  idToken: tokens.token,
+                                                  rawNonce: tokens.nonce)
         return try await signIn(credential: credential)
     }
     
+    func signInWithFacebook(token: FacebookSignInResultModel) async throws -> AuthDataResultModel {
+        let credential = FacebookAuthProvider.credential(withAccessToken: token.token)
+        
+        return try await signIn(credential: credential)
+    }
     
     func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(with: credential)
         return AuthDataResultModel(user: authDataResult.user)
-
     }
     
     func deleteAccount() async throws {
@@ -156,7 +164,7 @@ extension AuthenticationManager {
         return try await linkCredential(credential: credential)
     }
     
-    func linkGoogle(tokens: googleSignInResultModel) async throws -> AuthDataResultModel {
+    func linkGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
         let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)
 
         return try await linkCredential(credential: credential)

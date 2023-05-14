@@ -23,7 +23,7 @@ struct HomeScreen: View {
                         } label: {
                             NavigationLink {
                                 // show LessonView
-                                Text("Lekce 1")
+                                Text("LessonView")
                             } label: {
                                 Text(lesson.name ?? "no name found")
                             }
@@ -31,13 +31,31 @@ struct HomeScreen: View {
                         }
                     }
                 } else {
-                    Text("Dont have any lessons for u :/")
+                    VStack {
+                        Text("Loading")
+                        ProgressView()
+                    }
                 }
             }
             .padding()
             .fullScreenCover(isPresented: $vm.showCourses) {
                 CoursesView()
             }
+            .alert("Try again", isPresented: $vm.retryLoadingData, actions: {
+                Button {
+                    Task {
+                        do {
+                            try await vm.getLessonsForStartedCourse()
+                            vm.retryLoadingData = false
+                        } catch {
+                            print("DEBUG: loading lessonsss error again: \(error)")
+                        }
+                    }
+                } label: {
+                    Text("Retry")
+                }
+
+            })
             
         }
         .onAppear {
@@ -47,6 +65,7 @@ struct HomeScreen: View {
                     try await vm.getUser()
 //                    try await vm.getLessonsForStartedCourse()
                 } catch {
+//                    vm.retryLoadingData = true
                     print("DEBUG: getUser func error or lessons func error: \(error)")
                 }
             }
@@ -56,7 +75,8 @@ struct HomeScreen: View {
                 do {
                     try await vm.getLessonsForStartedCourse()
                 } catch {
-                    print("DEBUG: loading lessonssssss \(error)")
+                    vm.retryLoadingData = true
+                    print("DEBUG: loading lessonssssss error: \(error)")
                 }
 
             }
