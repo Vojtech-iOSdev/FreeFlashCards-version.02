@@ -30,12 +30,12 @@ struct SignInWithAppleButtonViewRepresentable: UIViewRepresentable {
     }
 }
 
-@MainActor
 final class SignInAppleHelper: NSObject {
     
     private var currentNonce: String?
     private var completionHandler: ((Result<SignInWithAppleResult, Error>) -> Void)? = nil
     
+    @MainActor
     func startSignInWithAppleFlow() async throws -> SignInWithAppleResult {
         try await withCheckedThrowingContinuation { continuation in
             self.startSignInWithAppleFlow { result in
@@ -51,6 +51,7 @@ final class SignInAppleHelper: NSObject {
         }
     }
     
+    @MainActor
     func startSignInWithAppleFlow(completion: @escaping (Result<SignInWithAppleResult, Error>) -> Void) {
         guard let topVC = Utilities.shared.topViewController() else {
             completion(.failure(URLError(.badServerResponse)))

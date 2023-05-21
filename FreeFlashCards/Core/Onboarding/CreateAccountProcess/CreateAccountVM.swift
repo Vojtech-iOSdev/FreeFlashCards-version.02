@@ -11,26 +11,17 @@ extension OnboardingVM {
     
     // MARK: SIGN UP METHODS
     func signUpGoogle() async throws {
-        let helper = SignInGoogleHelper()
-        let tokens = try await helper.signIn()
-        let authUser = try await authManager.signInWithGoogle(tokens: tokens)
-        
+        let authUser = try await authManager.signInWithGoogle()
         try await checkIfAccountAlreadyExists(userId: authUser.uid, authUser: authUser)
     }
     
     func signUpApple() async throws {
-        let helper = SignInAppleHelper()
-        let tokens = try await helper.startSignInWithAppleFlow()
-        let authUser = try await authManager.signInWithApple(tokens: tokens)
-        
+        let authUser = try await authManager.signInWithApple()
         try await checkIfAccountAlreadyExists(userId: authUser.uid, authUser: authUser)
     }
     
     func signUpFacebook() async throws {
-        let helper = SignInFacebookHelper()
-        let token = try await helper.signInFacebook()
-        let authUser = try await authManager.signInWithFacebook(token: token)
-        
+        let authUser = try await authManager.signInWithFacebook()
         try await checkIfAccountAlreadyExists(userId: authUser.uid, authUser: authUser)
     }
     

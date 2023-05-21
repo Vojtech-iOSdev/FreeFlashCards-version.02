@@ -17,10 +17,11 @@ protocol AuthenticationManagerProtocol {
     func resetPassword(email: String) async throws
     func updatePassword(password: String) async throws
     func updateEmail(email: String) async throws
-    func signInWithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel
-    func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel
-    func signInWithFacebook(token: FacebookSignInResultModel) async throws -> AuthDataResultModel
-    func signIn(credential: AuthCredential) async throws -> AuthDataResultModel
+    
+    func signInWithGoogle() async throws -> AuthDataResultModel
+    func signInWithApple() async throws -> AuthDataResultModel
+    func signInWithFacebook() async throws -> AuthDataResultModel
+    
     func deleteAccount() async throws
     func deleteAuthorization() async throws
     func signInAnonymously() async throws -> AuthDataResultModel

@@ -14,12 +14,11 @@ struct FacebookSignInResultModel {
 //    let email: String?
 }
 
-@MainActor
 final class SignInFacebookHelper {
     
     let loginManager = LoginManager()
     
-    
+    @MainActor
     func signInFacebook() async throws -> FacebookSignInResultModel {
         try await withCheckedThrowingContinuation { continuation in
             self.loginFacebook { result in

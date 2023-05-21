@@ -27,32 +27,24 @@ final class OnboardingVM: ObservableObject {
     @Published private(set) var dailyGoals: [Int] = [10, 25, 50]
     @Published var selectedDailyGoal: Int? = nil
 
-    
+     
     // MARK: SIGN IN METHODS
     func signInGoogle() async throws {
-        let helper = SignInGoogleHelper()
-        let tokens = try await helper.signIn()
-        let authUser = try await authManager.signInWithGoogle(tokens: tokens)
-        
+        let authUser = try await authManager.signInWithGoogle()
         try await checkIfAccountExists(userId: authUser.uid)
     }
     
     func signInApple() async throws {
-        let helper = SignInAppleHelper()
-        let tokens = try await helper.startSignInWithAppleFlow()
-        let authUser = try await authManager.signInWithApple(tokens: tokens)
-        
+        let authUser = try await authManager.signInWithApple()
         try await checkIfAccountExists(userId: authUser.uid)
     }
     
     func signInFacebook() async throws {
-        let helper = SignInFacebookHelper()
-        let token = try await helper.signInFacebook()
-        let authUser = try await authManager.signInWithFacebook(token: token)
-        
+        let authUser = try await authManager.signInWithFacebook()
         try await checkIfAccountExists(userId: authUser.uid)
     }
     
+    // this is not ViewLogic therefore it should be in the authManager and then here the sign-in methods should just catch any errors to inform the users using alerts or any other ViewLogic
     private func checkIfAccountExists(userId: String) async throws {
         do {
             let _ = try await userManager.getUser(userID: userId)

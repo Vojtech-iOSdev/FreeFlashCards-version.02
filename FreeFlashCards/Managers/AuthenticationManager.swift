@@ -27,6 +27,24 @@ final class AuthenticationManager: AuthenticationManagerProtocol {
         try Auth.auth().signOut()
     }
     
+    func deleteAccount() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        let userId = user.uid
+        
+        try await user.delete()
+        try await usersCollection.document(userId).delete()
+    }
+    
+    func deleteAuthorization() async throws {
+        do {
+            try await Auth.auth().currentUser?.delete()
+        } catch {
+            print("DEBUG: Could not delete authorization: \(error)")
+        }
+    }
+    
     func getAuthenticatedUser() throws -> AuthDataResultModel {
         guard let user = Auth.auth().currentUser else {
             throw URLError(.badServerResponse)
@@ -97,49 +115,42 @@ extension AuthenticationManager {
 extension AuthenticationManager {
     
     @discardableResult
-    func signInWithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
+    func signInWithGoogle() async throws -> AuthDataResultModel {
+        let helper = SignInGoogleHelper()
+        let tokens = try await helper.signIn()
+        
         let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken,
                                                        accessToken: tokens.accessToken)
+        
         return try await signIn(credential: credential)
     }
     
     @discardableResult
-    func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
+    func signInWithApple() async throws -> AuthDataResultModel {
+        let helper = SignInAppleHelper()
+        let tokens = try await helper.startSignInWithAppleFlow()
+        
         let credential = OAuthProvider.credential(withProviderID: AuthProviderOption.apple.rawValue,
                                                   idToken: tokens.token,
                                                   rawNonce: tokens.nonce)
+        
         return try await signIn(credential: credential)
     }
     
-    func signInWithFacebook(token: FacebookSignInResultModel) async throws -> AuthDataResultModel {
+    @discardableResult
+    func signInWithFacebook() async throws -> AuthDataResultModel {
+        let helper = SignInFacebookHelper()
+        let token = try await helper.signInFacebook()
+
         let credential = FacebookAuthProvider.credential(withAccessToken: token.token)
         
         return try await signIn(credential: credential)
     }
     
-    func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
+    private func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().signIn(with: credential)
         return AuthDataResultModel(user: authDataResult.user)
     }
-    
-    func deleteAccount() async throws {
-        guard let user = Auth.auth().currentUser else {
-            throw URLError(.badServerResponse)
-        }
-        let userId = user.uid
-        
-        try await user.delete()
-        try await usersCollection.document(userId).delete()
-    }
-    
-    func deleteAuthorization() async throws {
-        do {
-            try await Auth.auth().currentUser?.delete()
-        } catch {
-            print("DEBUG: Could not delete authorization: \(error)")
-        }
-    }
-    
 }
 
 // MARK: SIGN IN ANONYMOUSLY
